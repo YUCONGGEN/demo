@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.com.yuconggen.mybatis.mapper.UserMapper">
+    <resultMap id="userResultMap" type="com.yuconggen.mybatis.pojo.User">
+        <id property="id" column="id"></id>
+        <result property="age" column="age"></result>
+        <result property="name" column="name"></result>
+        <result property="sex" column="sex"></result>
+        <result property="yuEmail" column="yu_email"></result>
+    </resultMap>
+    <insert id="insertUser">
+        insert into user values ("111yu",22,"conggen","jjj")
+    </insert>
+    <insert id="insertUser1" >
+        insert into user(id,name, age, sex, yu_email) values(2,"1111yu",122,"1conggen","1jjj")
+    </insert>
+
+    <delete id="deleteuser">
+        delete from user where name="111yu"
+    </delete>
+    <select id="selectUser" resultType="com.yuconggen.mybatis.pojo.User">
+        select * from user
+    </select>
+    <select id="loginuser" resultType="com.yuconggen.mybatis.pojo.User">
+        select * from user where name=#{name} and age=#{age}
+    </select>
+    <select id="loginuser1" resultType="com.yuconggen.mybatis.pojo.User"  resultMap="userResultMap">
+        select * from user where name=#{name} and age=#{age}
+    </select>
+    <select id="selectAllUser" resultType="map">
+        select * from user where age=#{age}
+    </select>
+    <select id="selectAllUserMap" resultType="java.util.Map">
+        select * from user where age=#{age}
+    </select>
+    <select id="selectAllUserMap1" resultType="java.util.Map">
+        select * from user where name like "%"#{name}"%"
+    </select>
+
+</mapper>
